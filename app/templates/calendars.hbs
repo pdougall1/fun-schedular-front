@@ -53,7 +53,7 @@
         {{#each week in content.weeks}}
           <li class="week">
             {{#each day in week}}
-              <div {{!action 'newEvent' day}} class='day large-1 :medium-1 small-1'>
+              <div class='day large-1 :medium-1 small-1'>
                 {{day.ofMonth}}
                 <ul>
                   {{#each event in day.content}}
