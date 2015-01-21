@@ -26,6 +26,11 @@ export default Ember.ObjectController.extend({
 		}
 	}.observes('currentMonth'),
 
+	currentMonthFormatted: function () {
+		return moment(this.get('currentMonth'), 'YYYY-MM')
+			.format('MMMM YYYY');
+	}.property('currentMonth'),
+
 	actions: {
 		previousMonth: function () {
 			var newMonth = moment(this.get('currentMonth'), 'YYYY-MM')
