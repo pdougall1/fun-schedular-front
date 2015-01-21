@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Calendar from '../lib/calendar/calendar';
 
-export default Ember.ObjectController.extend({
+export default Ember.ObjectController.extend(Ember.Evented, {
 	queryParams: ['currentMonth'],
 
 	calendar: function () {
@@ -38,6 +38,7 @@ export default Ember.ObjectController.extend({
 				.format("YYYY-MM");
 
 			this.transitionToRoute('calendars', {queryParams: {currentMonth: newMonth }});
+			this.trigger('dateChange');
 		},
 
 		nextMonth: function () {
@@ -46,6 +47,7 @@ export default Ember.ObjectController.extend({
 				.format("YYYY-MM");
 
 			this.transitionToRoute('calendars', {queryParams: {currentMonth: newMonth }});
+			this.trigger('dateChange');
 		}
 	}
 });
