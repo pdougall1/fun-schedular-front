@@ -1,0 +1,21 @@
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a {{action 'backToHome' target="view"}}>Fun Schedular</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><a {{action 'visitUsers'}} > Users
+      <li class="has-dropdown">
+        <a {{action 'toggleDropdown' target="view"}}></a>
+        <ul class="dropdown">
+          <li><a {{action "visitPage" "pageName"}}>Awesome Page</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </section>
+</nav>

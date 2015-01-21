@@ -1,0 +1,53 @@
+$primary-color: #F27B35;
+$alt-primary-color: #F24E29;
+$secondary-color: #F2E4BB;
+$secondary-light: lighten( $secondary-color, 30% );
+$secondary-dark: darken( $secondary-color, 10% );
+
+$tertiary: #8694A6;
+$tertiary-light: lighten( $tertiary, 15% );
+$tertiary-dark: darken( $tertiary, 30% );
+$alert-color: #f04124;
+$success-color: #43AC6A;
+
+$yellow-highlight: #F4DF50;
+$blue-highlight: #44C6F0;
+
+
+
+// ____________________________________________________
+$brownmadder: #DB2929;
+$maroon: #800000;
+$orangered4: #FF4040;
+$tomato4: #8B3626;
+$coral1: #FF7256;
+$chocolate: #993300;
+$cadmiumorange: #FF6103;
+$ochre: #CC7722;
+$mustard: #FFCC11;
+$brightgold: #D9D919;
+$goldgreen: #AADD00;
+$pea: #79973F;
+$chartreuse3: #66CD00;
+$deepskyblue2: #00B2EE;
+$aquamarine: #4E78A0;
+$sgilight-blue: #7D9EC0;
+$blue: #7EB6FF;
+
+.blue { background-color: $blue; }
+.brownmadder { background-color: $brownmadder; }
+.maroon { background-color: $maroon; }
+.orangered4 { background-color: $orangered4; }
+.tomato4 { background-color: $tomato4; }
+.coral1 { background-color: $coral1; }
+.chocolate { background-color: $chocolate; }
+.cadmiumorange { background-color: $cadmiumorange; }
+.ochre { background-color: $ochre; }
+.mustard { background-color: $mustard; }
+.brightgold { background-color: $brightgold; }
+.goldgreen { background-color: $goldgreen; }
+.pea { background-color: $pea; }
+.chartreuse3 { background-color: $chartreuse3; }
+.deepskyblue2 { background-color: $deepskyblue2; }
+.aquamarine { background-color: $aquamarine; }
+.sgilight-blue { background-color: $sgilight-blue; }

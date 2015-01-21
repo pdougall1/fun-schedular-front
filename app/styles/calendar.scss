@@ -1,0 +1,175 @@
+@import 'foundation';
+.main-calendar {
+    height: 100%;
+
+
+    /* Responsive Calendar for Foundation */
+    .calendar { 
+        margin-left: 0;
+        margin-bottom: 1.25rem;
+        padding-bottom: 1px;
+        border-bottom: 2px solid $primary-color;
+    }
+    .calendar * {
+        list-style: none;
+        line-height: 1;
+    }
+    .calendar .title { 
+        text-align: center; 
+        font-size: 1.6875rem; 
+        background-color: $primary-color;
+        color: white;
+        width:100%;
+        &:after {
+            /* Prevent wrapper from shrinking height, 
+            see http://www.positioniseverything.net/easyclearing.html */
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        div {
+            float: left;
+            width:33%;
+        }
+    }
+    .calendar .week {
+        padding: 0px;
+        margin: 0px;
+    }
+    .calendar .week:before, .calendar .week:after {
+        content: " ";
+        display: table; 
+    }
+    .calendar .week:after {
+        clear: both; 
+    }
+    .calendar .day,
+    .calendar .days {
+      position: relative;
+      padding: 0.3rem 0.39375rem;
+      width: 100%;
+      // min-height: 6rem;
+      float: left;
+      border: 1px solid lighten( $tertiary, 30% );
+      font-size: 12px;
+      overflow:auto;
+    }
+
+    .day:hover, .days:hover {
+        // background: $tertiary-light;
+    }
+
+    .day.previous-month,
+    .days.previous-month,
+    .day.next-month,
+    .days.next-month {
+        background: $tertiary-light;
+        color: #222222;
+        display: none;
+    }
+
+    @media only screen {
+        .calendar .small-1 {
+            position: relative;
+            width: 14.28571%;
+        }
+
+        .calendar .day-header .small-1,
+        .small-1.previous-month,
+        .small-1.next-month {
+            display: block;
+            visibility: visible;
+        }
+    }
+    @media only screen and (min-width: 40.063em) {
+        .calendar .medium-1 {
+            position: relative;
+            width: 14.28571%;
+        }
+
+        .calendar .day-header .medium-1,
+        .medium-1.previous-month,
+        .medium-1.next-month {
+            display: block;
+            visibility: visible;
+        }
+    }
+    @media only screen and (min-width: 64.063em) {
+        .calendar .large-1 {
+            position: relative;
+            width: 14.28571%;
+        }
+
+        .calendar .day-header .large-1,
+        .large-1.previous-month,
+        .large-1.next-month {
+            display: block;
+            visibility: visible;
+        }
+    }
+    @media only screen and (min-width: 90.063em) {
+        .calendar .xlarge-1 {
+            position: relative;
+            width: 14.28571%;
+        }
+
+        .calendar .day-header .xlarge-1,
+        .xlarge-1.previous-month,
+        .xlarge-1.next-month {
+            display: block;
+            visibility: visible;
+        }
+    }
+    @media only screen and (min-width: 120.063em) {
+        .calendar .xxlarge-1 {
+            position: relative;
+            width: 14.28571%;
+        }
+
+        .calendar .day-header .xxlarge-1,
+        .xxlarge-1.previous-month,
+        .xxlarge-1.next-month {
+            display: block;
+            visibility: visible;
+        }
+    }
+
+    /*#beginning-date {
+        width: 400px;
+        height: 200px;
+    }
+    */
+    .date-picker {
+        width: 400px;
+    }
+
+    .in-month {
+        background-color: $tertiary-light;
+        &:hover {
+            background-color: $yellow-highlight;
+        }
+    }
+
+    .today {
+        border: 6px solid $alt-primary-color !important;
+    }
+
+    .chosen {
+        border: 6px solid $blue-highlight !important;   
+    }
+
+    // .valence-1 { background: lighten( $tertiary-dark, 65% );}
+    // .valence-2 { background: lighten( $tertiary-dark, 55% );}
+    // .valence-3 { background: lighten( $tertiary-dark, 50% );}
+    // .valence-4 { background: lighten( $tertiary-dark, 45% );}
+    // .valence-5 { background: lighten( $tertiary-dark, 40% );}
+    // .valence-6 { background: lighten( $tertiary-dark, 30% );}
+    // .valence-7 { background: lighten( $tertiary-dark, 20% );}
+    // .valence-8 { background: lighten( $tertiary-dark, 10% );}
+    // .valence-9 { background: lighten( $tertiary-dark, 0% );}
+    // .valence-10 { background: lighten( $tertiary-color, 100% );}
+
+
+}
