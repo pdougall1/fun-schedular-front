@@ -8,6 +8,10 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
+      {{#if currentUser.isAuthenticated}}
+        <li><a {{action 'logout'}}>Log Out</a></li>
+      {{/if}}
+
       <li><a {{action 'visitUsers'}} > Users
       <li class="has-dropdown">
         <a {{action 'toggleDropdown' target="view"}}></a>
