@@ -7,6 +7,10 @@ export default Ember.Component.extend({
   actions: {
   	backToHome: function () {
   		this.sendAction('toCalendar');
+  	},
+
+  	logout: function () {
+  		this.sendAction('logout');	
   	}
   }
 

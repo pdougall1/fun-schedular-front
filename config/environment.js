@@ -25,6 +25,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
@@ -40,7 +41,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN = 'https://fun-schedular-back.herokuapp.com/';
   }
 
   return ENV;

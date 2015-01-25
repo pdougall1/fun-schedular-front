@@ -6,6 +6,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+	this.resource('sessions', { path: 'login' });
 	this.resource('events', function () {
 		this.route('show', { path: 'events/:event_id' });
 	});

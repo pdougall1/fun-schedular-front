@@ -2,16 +2,18 @@ import Ember from 'ember';
 import Calendar from '../lib/calendar/calendar';
 
 export default Ember.ObjectController.extend(Ember.Evented, {
+	needs: ['currentUser'],
+	currentUser: Ember.computed.alias('controllers.currentUser'),
 	queryParams: ['currentMonth'],
 
 	calendar: function () {
 		// memoize calendar
-		var calendar = this.memoCal
+		var calendar = this.memoCal;
 		if (calendar) {
-			return calendar
+			return calendar;
 		} else {
-			this.memoCal = Calendar.create()
-			return this.memoCal
+			this.memoCal = Calendar.create();
+			return this.memoCal;
 		}
 	}.property(),
 
