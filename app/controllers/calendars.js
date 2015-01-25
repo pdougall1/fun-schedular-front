@@ -2,6 +2,8 @@ import Ember from 'ember';
 import Calendar from '../lib/calendar/calendar';
 
 export default Ember.ObjectController.extend(Ember.Evented, {
+	needs: ['currentUser'],
+	currentUser: Ember.computed.alias('controllers.currentUser'),
 	queryParams: ['currentMonth'],
 
 	calendar: function () {
