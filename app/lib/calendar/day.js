@@ -21,7 +21,7 @@ export default Ember.Object.extend({
     this.set('moment', date);
     this.set('content', Ember.A([]));
     this.itemUniqueByProps = [];
-    return this
+    return this;
   },
   
   ofMonth: function() {
@@ -62,7 +62,7 @@ export default Ember.Object.extend({
       return item === i;
     });
     this.set('content', newArr);
-    uniqueBy = this.get('uniqueBy')
+    uniqueBy = this.get('uniqueBy');
     if (uniqueBy) {
       return this.itemUniqueByProps = this.itemUniqueByProps.reject(function(prop) {
         return prop = item.get(prop);

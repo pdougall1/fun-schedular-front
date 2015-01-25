@@ -6,12 +6,12 @@ export default Ember.ObjectController.extend(Ember.Evented, {
 
 	calendar: function () {
 		// memoize calendar
-		var calendar = this.memoCal
+		var calendar = this.memoCal;
 		if (calendar) {
-			return calendar
+			return calendar;
 		} else {
-			this.memoCal = Calendar.create()
-			return this.memoCal
+			this.memoCal = Calendar.create();
+			return this.memoCal;
 		}
 	}.property(),
 

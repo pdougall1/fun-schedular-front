@@ -18,16 +18,16 @@ export default Ember.Object.extend({
   },
 
   guideDate: function () {
-    return moment()
+    return moment();
   }.property(),
 
   month: function () {
-    return moment(this.get('guideDate')).get('month') + 1
+    return moment(this.get('guideDate')).get('month') + 1;
   },
 
   addEventsToDays: function () {
     var events = this.get('allEvents');
-    var self = this
+    var self = this;
     events.forEach( function (event) {
       var key = event.get('date');
       var day = self.get(key);
@@ -55,28 +55,28 @@ export default Ember.Object.extend({
   // UTITLITY METHODS
 
   _setDays: function (allDays) {
-    var self = this
-    var keys = []
+    var self = this;
+    var keys = [];
     allDays.forEach( function (day) {
       var key = moment(day.get('moment')).format('YYYY-MM-DD');
       keys.pushObject(key);
       self.set(key, day);
     });
-    this.daysKeys = keys
+    this.daysKeys = keys;
   },
 
   _getDaysInMonth: function () {
     var day = this.get('guideDate');
     var date = moment(day).startOf('month').toDate();
     var month = moment(date).get('month');
-    var days = []
+    var days = [];
     while (date.getMonth() == month) { //if that date is in the right month
       day = Day.create({ date: date, uniqueBy: 'id', sortProperties: 'date' });
       day.set('inMonth', true);
       days.pushObject(day);
-      date.setDate(date.getDate() + 1) // then advance the loop
+      date.setDate(date.getDate() + 1); // then advance the loop
     }
-    return days
+    return days;
   },
 
   _addSurroundingDays: function (daysInMonth) {
