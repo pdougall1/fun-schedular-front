@@ -1,11 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  needs: ['currentUser'],
 
   init: function() {
     this._super();
-    if (Ember.$.cookie('token') && Ember.$.cookie('email')) {
-      this.setupAuthHeader(Ember.$.cookie('token'), Ember.$.cookie('email'));
+
+    var auth_token, email;
+    auth_token = Ember.$.cookie('token');
+    email = Ember.$.cookie('email');
+    if (auth_token && email) {
+      this.establishApiKey(auth_token, email);
     }
   },
 
@@ -24,6 +29,7 @@ export default Ember.Controller.extend({
         'Authorization': 'Token none'
       }
     });
+    this.resetCurrentUser();
   },
 
   tokenChanged: function() {
@@ -47,18 +53,8 @@ export default Ember.Controller.extend({
       this.setProperties({email: null, password: null});
 
       Ember.$.post('http://localhost:3000/authorizations', data).then(function(response) {
-        var key = _this.get('store').createRecord('apiKey', {
-          authToken: response.auth_token,
-          email: data.email
-        });
-
-        key.save();
-        _this.setupAuthHeader(key);
-
-        _this.setProperties({
-          token: key.get('authToken'),
-          email: key.get('email')
-        });
+        data
+        _this.establishApiKey(response.auth_token, data.email);
 
         if (attemptedTransition) {
           attemptedTransition.retry();
@@ -76,12 +72,42 @@ export default Ember.Controller.extend({
   },
 
   // private
+  establishApiKey: function (auth_token, email) {
+    var key = this.get('store').createRecord('apiKey', {
+      authToken: auth_token,
+      email: email
+    });
+
+    key.save();
+    this.setupAuthHeader(key);
+    this.setupCurrentUser();
+    this.setProperties({
+      authToken: key.get('authToken'),
+      email: key.get('email')
+    });
+  },
+
   setupAuthHeader: function(key) {
+    
+    var token = 'Token token="' + key.get('authToken') + '",email="' + key.get('email') + '"'
+    console.log(token)
     Ember.$.ajaxSetup({
       headers: {
-        'Authorization': 'Token token="' + key.get('token') + '",email="' + key.get('email') + '"'
+        'Authorization': token 
       }
     });
+  },
+
+  setupCurrentUser: function() {
+    var _this = this;
+    this.store.find('user', 'current').then(function(user) {
+      _this.get('controllers.currentUser').set('content', user);
+    });
+  },
+
+  resetCurrentUser: function() {
+    this.get('controllers.currentUser').set('content', null);
+    this.store.unloadAll('user');
   }
 
 });

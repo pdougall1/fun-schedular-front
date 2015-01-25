@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   beforeModel: function(transition) {
-    if (Ember.isEmpty(this.controllerFor('sessions').get('token'))) {
+    if (Ember.isEmpty(this.controllerFor('sessions').get('authToken'))) {
       return this.redirectToLogin(transition);
     }
   },
