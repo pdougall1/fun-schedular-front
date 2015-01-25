@@ -6,23 +6,23 @@ export default Ember.Controller.extend({
   init: function() {
     this._super();
 
-    var auth_token, email;
-    auth_token = Ember.$.cookie('token');
+    var authToken, email;
+    authToken = Ember.$.cookie('authToken');
     email = Ember.$.cookie('email');
-    if (auth_token && email) {
-      this.establishApiKey(auth_token, email);
+    if (authToken && email) {
+      this.establishApiKey(authToken, email);
     }
   },
 
   attemptedTransition: null,
-  token: Ember.$.cookie('token'),
+  authToken: Ember.$.cookie('authToken'),
   email: Ember.$.cookie('email'),
 
   reset: function() {
     this.setProperties({
       email: null,
       password: null,
-      token: null
+      authToken: null
     });
     Ember.$.ajaxSetup({
       headers: {
@@ -33,14 +33,14 @@ export default Ember.Controller.extend({
   },
 
   tokenChanged: function() {
-    if (Ember.isEmpty(this.get('token'))) {
-      Ember.$.removeCookie('token');
+    if (Ember.isEmpty(this.get('authToken'))) {
+      Ember.$.removeCookie('authToken');
       Ember.$.removeCookie('email');
     } else {
-      Ember.$.cookie('token', this.get('token'));
+      Ember.$.cookie('authToken', this.get('authToken'));
       Ember.$.cookie('email', this.get('email'));
     }
-  }.observes('token'),
+  }.observes('authToken'),
 
   actions: {
     login: function() {
@@ -72,9 +72,9 @@ export default Ember.Controller.extend({
   },
 
   // private
-  establishApiKey: function (auth_token, email) {
+  establishApiKey: function (authToken, email) {
     var key = this.get('store').createRecord('apiKey', {
-      authToken: auth_token,
+      authToken: authToken,
       email: email
     });
 
@@ -88,12 +88,10 @@ export default Ember.Controller.extend({
   },
 
   setupAuthHeader: function(key) {
-    
-    var token = 'Token token="' + key.get('authToken') + '",email="' + key.get('email') + '"'
-    console.log(token)
+    var authToken = 'Token token="' + key.get('authToken') + '",email="' + key.get('email') + '"'
     Ember.$.ajaxSetup({
       headers: {
-        'Authorization': token 
+        'Authorization': authToken 
       }
     });
   },
