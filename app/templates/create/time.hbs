@@ -1,0 +1,23 @@
+<div class='show-times row'>
+	<div class='large-6 column'>
+		<div>{{formattedBeginDate}}</div>
+		<div>{{formattedBeginTime}}</div>
+	</div>
+	<div class='large-6 column'>
+		<div>{{formattedEndDate}}</div>
+		<div>{{formattedEndTime}}</div>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='large-8 column'>
+		<div>Start Time</div>
+		{{time-picker currentDateTime=startTime type='begin' action='chooseTime'}}
+
+		<div>End Time</div>
+		{{time-picker currentDateTime=endTime type='end' action='chooseTime'}}
+	</div>
+	<div class='large-4 column'>
+		{{date-picker currentDateTime=startTime type='begin' action='chooseDate'}}
+	</div>	
+</div>

@@ -1,0 +1,35 @@
+$box-height: 500px;
+
+#create-event-wrapper{	
+  position: relative;
+  width: 70%;
+  height: $box-height;
+  margin: 20px auto;
+}
+
+.create-event{	
+  position: absolute;	
+  width: 100%;	
+  height: $box-height;	
+  background-color: $primary-background-color;
+}
+
+.tabs {
+	list-style-type: none;
+	li {
+		float: left;
+		border: 1px solid black;
+		padding: 5px;
+		text-align: center;
+		width: 25%;
+	}
+}
+
+.show-times {
+	height: 50px;
+	border-bottom: 1px solid $tertiary-light;
+	margin-bottom: 10px;
+	div {
+		text-align: center;
+	}
+}

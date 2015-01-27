@@ -1,0 +1,16 @@
+<div class='overlay' {{action "cancelNewEvent" }}></div>
+
+
+<div id="create-event-wrapper">
+  <div class='create-event'>
+    <ul class='tabs'>
+	    {{#each tab in tabs}}
+	    	<li {{action 'goToTab' tab.route}}>{{tab.name}}</li>
+	    {{/each}}    	
+    </ul>
+    {{outlet}}
+  </div>
+</div>
+
+
+

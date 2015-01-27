@@ -4,8 +4,8 @@ import Month from './month';
 export default Ember.Object.extend({
   // initialize with createMonth(currentMonth)
 
-  createMonth: function (currentMonth) {
-    var month = Month.create({ currentMonth: currentMonth });
+  createMonth: function (currentMonth, currentDateTime) {
+    var month = Month.create({ currentMonth: currentMonth, currentDateTime: currentDateTime });
     var dateKey = moment(month.get('guideDate')).format('YYYY-MM');
     this.set(dateKey, month);
     return month;
@@ -16,6 +16,13 @@ export default Ember.Object.extend({
   watchNewItems: function () {
     this.addItems(this.get('newItemsRepo.content.content'));
   }.observes('newItemsRepo.length'),
+
+  setChosen: function () {
+    var chosenMonth, chosen, month;
+    var _this = this
+    chosenMonth = moment(this.get('chosenMonth')).format('YYYY-MM');
+    this.findOrCreate(chosenMonth).resetChosen(this.get('chosen'));
+  }.observes('chosen'),
 
   addItems: function (items) {
     var self = this;
@@ -45,13 +52,19 @@ export default Ember.Object.extend({
     return this.set(dateKey, month);
   },
 
-  findOrCreate: function (dateKey) {
+  findOrCreate: function (dateKey, currentDateTime) {
+    if (dateKey.constructor.name === 'Moment') {
+      dateKey = dateKey.format('YYYY-MM');
+    }
     var currentMonth,
       month = this.get(dateKey);
     if (month) {
        currentMonth = month;
     } else {
-      currentMonth = this.createMonth(dateKey);
+      if (!currentDateTime) {
+        currentDateTime = this.get('currentDateTime')
+      }
+      currentMonth = this.createMonth(dateKey, currentDateTime);
     }
     return currentMonth;
   },

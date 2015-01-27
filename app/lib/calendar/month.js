@@ -7,6 +7,7 @@ export default Ember.Object.extend({
 
   init: function() {
     this.set('guideDate', moment(this.get('currentMonth'), "YYYY-MM-DD"));
+    this.set('currentDateTime', this.get('currentDateTime'));
     return this.setUpMonth();
   },
 
@@ -50,6 +51,19 @@ export default Ember.Object.extend({
     events.addObject(event);
     this.set('allEvents', events);
     return this;
+  },
+
+  resetChosen: function (chosenMoment) {
+    var chosenMoment;
+    var days = this.daysInMonth;
+    var _this = this;
+    days.forEach(function (day) {
+      day.set('chosen', false);
+    });
+    
+    days.find( function (day) {
+      return day.moment.date() === chosenMoment.date();
+    }).set('chosen', true);
   },
 
   // UTITLITY METHODS

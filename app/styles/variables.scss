@@ -7,6 +7,7 @@ $secondary-light: lighten( $secondary-color, 30% );
 $secondary-dark: darken( $secondary-color, 10% );
 
 $tertiary: #8694A6;
+$tertiary-very-light: lighten( $tertiary, 35% );
 $tertiary-light: lighten( $tertiary, 15% );
 $tertiary-dark: darken( $tertiary, 30% );
 $alert-color: #f04124;
@@ -14,6 +15,7 @@ $success-color: #43AC6A;
 
 $yellow-highlight: #F4DF50;
 $blue-highlight: #44C6F0;
+$primary-background-color: white;
 
 
 

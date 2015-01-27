@@ -1,0 +1,7 @@
+<div class='time-picker'>
+	<select name="times">
+		{{#each time in times}}
+			<option {{bind-attr value=time.formatted}}>{{time.formatted}}</option>	
+		{{/each}}
+	</select>
+</div>
