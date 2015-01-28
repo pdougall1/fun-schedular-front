@@ -18,7 +18,7 @@ export default Ember.Component.extend({
 	}.property(),
 
 	addTimeValuesToPassedInTime: function (newTime) {
-		var passedIn = this.get('currentDateTime');
+		var passedIn = moment(this.get('currentDateTime'));
 		passedIn.hour(newTime.hour());
 		passedIn.minutes(newTime.minutes());
 		passedIn.seconds(newTime.seconds());

@@ -5,8 +5,8 @@ export default AuthenticatedRoute.extend({
 
 	model: function () {
 		return this.store.createRecord('event', {
-			startTime: moment(),
-			endTime: moment()
+			startTime: new Date,
+			endTime: new Date
 		});
 	},
 
@@ -21,11 +21,11 @@ export default AuthenticatedRoute.extend({
 			newMoment.year(givenMoment.year());
 			newMoment.month(givenMoment.month());
 			newMoment.date(givenMoment.date());
-			controller.set(type + 'Time', newMoment);
+			controller.set(type + 'Time', newMoment.toDate());
 		},
 
 		chooseTime: function (givenMoment, type) {
-			this.get('controller').set(type + 'Time', moment(givenMoment));
+			this.get('controller').set(type + 'Time', moment(givenMoment).toDate());
 		}, 
 
 		chooseVenue: function (googlePlace) {

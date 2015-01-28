@@ -54,7 +54,7 @@ export default Ember.Object.extend({
   },
 
   resetChosen: function (chosenMoment) {
-    var chosenMoment;
+    var chosenMoment = moment(chosenMoment);
     var days = this.daysInMonth;
     var _this = this;
     days.forEach(function (day) {
