@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'fun-schedular-front/config/environment';
 
 export default Ember.Controller.extend({
   needs: ['currentUser'],
@@ -52,7 +53,7 @@ export default Ember.Controller.extend({
       // clear form fields
       this.setProperties({email: null, password: null});
 
-      Ember.$.post(FunSchedularFront.FUN_SCHEDULAR_RAILS_DOMAIN + '/authorizations', data).then(function(response) {
+      Ember.$.post(ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN + '/authorizations', data).then(function(response) {
         data
         _this.establishApiKey(response.auth_token, data.email);
 

@@ -41,7 +41,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN = 'https://fun-schedular-back.herokuapp.com/';
+    ENV.locationType = 'hash';
+    ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN = 'https://fun-schedular-back.herokuapp.com';
   }
 
   return ENV;

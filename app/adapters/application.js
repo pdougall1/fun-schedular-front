@@ -1,6 +1,6 @@
 import DS from 'ember-data';
-import config from '../config/environment';
+import ENV from 'fun-schedular-front/config/environment';
 
 export default DS.ActiveModelAdapter.extend({
-	host: FunSchedularFront.FUN_SCHEDULAR_RAILS_DOMAIN
+	host: ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN
 });
