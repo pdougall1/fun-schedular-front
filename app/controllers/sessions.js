@@ -52,7 +52,7 @@ export default Ember.Controller.extend({
       // clear form fields
       this.setProperties({email: null, password: null});
 
-      Ember.$.post('http://localhost:3000/authorizations', data).then(function(response) {
+      Ember.$.post(FunSchedularFront.FUN_SCHEDULAR_RAILS_DOMAIN + '/authorizations', data).then(function(response) {
         data
         _this.establishApiKey(response.auth_token, data.email);
 
