@@ -21,12 +21,16 @@ export default Ember.ObjectController.extend(Ember.Evented, {
 		return moment().format('YYYY-MM');
 	}.property(),
 
-	update: function () {
+	updateMonth: function () {
 		if (this.get('calendar')) {
 			var newMonth = this.get('calendar').findOrCreate(this.get('currentMonth'));
 			this.set('content', newMonth);			
 		}
 	}.observes('currentMonth'),
+
+	addEvent: function (event) {
+		// this.get('content').addEvent(event);
+	},
 
 	currentMonthFormatted: function () {
 		return moment(this.get('currentMonth'), 'YYYY-MM')

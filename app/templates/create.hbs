@@ -6,7 +6,8 @@
     <ul class='tabs'>
 	    {{#each tab in tabs}}
 	    	<li {{action 'goToTab' tab.route}}>{{tab.name}}</li>
-	    {{/each}}    	
+	    {{/each}}
+	    <li {{action 'submitEvent'}}>Submit</li>  	
     </ul>
     {{outlet}}
   </div>

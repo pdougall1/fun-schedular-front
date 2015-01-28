@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
-	needs: ['currentUser'],
+	needs: ['currentUser', 'calendars'],
 	currentUser: Ember.computed.alias('controllers.currentUser'),
 
 	tabs: [
@@ -10,4 +10,5 @@ export default Ember.ObjectController.extend({
 		{name: 'Location', route: 'create.location'},
 		{name: 'People', route: 'create.people'},
 	]
+
 });

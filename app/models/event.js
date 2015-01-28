@@ -4,7 +4,7 @@ export default DS.Model.extend({
 
 	startTime: DS.attr('date'),
 	endTime: DS.attr('date'),
-	description: DS.attr('text'),
+	description: DS.attr('string'),
 	name: DS.attr('string'),
 	facebookId: DS.attr('string'),
 	createdAt: DS.attr('date'),

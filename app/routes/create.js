@@ -39,6 +39,19 @@ export default AuthenticatedRoute.extend({
 		        this.set('venue', venue);
 		        this.get('controller').set('venue', venue);
 			}
+		},
+
+		submitEvent: function () {
+			var venue = this.get('controller.venue');
+			var _event = this.get('controller.model');
+			_event.save().then( function (savedEvent) {
+				venue.set('eventId', savedEvent.get('id'));
+				venue.save();
+			})						
+
+			this.get('controller.controllers.calendars').addEvent(_event);
+			var params = { currentMonth: moment(_event.get('moment')).format('YYYY-MM') };
+			this.transitionTo('calendars', { queryParams: params } );
 		}
 	}
 });
