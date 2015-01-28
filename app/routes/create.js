@@ -26,7 +26,19 @@ export default AuthenticatedRoute.extend({
 
 		chooseTime: function (givenMoment, type) {
 			this.get('controller').set(type + 'Time', moment(givenMoment));
+		}, 
+
+		chooseVenue: function (googlePlace) {
+			if (googlePlace.geometry) {
+				var venue = this.store.createRecord('venue');
+		        venue.set('latitude', googlePlace.geometry.location.lat())
+		        venue.set('longitude', googlePlace.geometry.location.lng())
+		        venue.set('address', googlePlace.formatted_address)
+		        venue.set('name', googlePlace.name)
+		        venue.set('googlePlaceId', googlePlace.place_id)
+		        this.set('venue', venue);
+		        this.get('controller').set('venue', venue);
+			}
 		}
 	}
-
 });
