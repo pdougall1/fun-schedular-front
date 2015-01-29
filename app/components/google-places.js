@@ -9,10 +9,10 @@ export default Ember.TextField.extend({
 		var callback = function () {
 			var googlePlace = autocomplete.getPlace();
 			_this.set('googlePlace', googlePlace);
-		}
+		};
 
 		// does the callback really need to be wrapped in a function?
-		google.maps.event.addListener(autocomplete, 'place_changed', function () { callback() });
+		google.maps.event.addListener(autocomplete, 'place_changed', function () { callback(); });
 	}.on('didInsertElement'),
 
 	placeChange: function () {

@@ -4,7 +4,7 @@ import Calendar from '../lib/calendar/calendar';
 export default Ember.Component.extend({
 
 	didInsertElement: function () {
-		var calendar = this.get('calendar')
+		var calendar = this.get('calendar');
 		calendar.set('chosen', this.get('currentDateTime'));
 		var currentMonth = this.get('calendar').findOrCreate(this.get('currentDateTime'), this.get('currentDateTime'));
 		this.set('month', currentMonth);

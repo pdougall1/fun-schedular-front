@@ -3,8 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
 	times: function () {
-		var times = []
-		var count = 0
+		var times = [];
+		var count = 0;
 		var time = moment(this.get('currentDateTime')).startOf('day');
 		while (count !== 97) {
 			times.pushObject({
@@ -12,9 +12,9 @@ export default Ember.Component.extend({
 				time: moment(time)
 			});
 			time = time.add(15, 'minutes');
-			count = count + 1
+			count = count + 1;
 		}
-		return times
+		return times;
 	}.property(),
 
 	addTimeValuesToPassedInTime: function (newTime) {
@@ -27,7 +27,7 @@ export default Ember.Component.extend({
 
 	change: function (event) {
 		var time = this.get('times').find(function (t) {
-			return event.target.value === t.formatted
+			return event.target.value === t.formatted;
 		});
 		var newTime = this.addTimeValuesToPassedInTime(time.time);
 		this.sendAction('action', newTime, this.get('type'));

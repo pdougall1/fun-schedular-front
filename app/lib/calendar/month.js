@@ -54,15 +54,14 @@ export default Ember.Object.extend({
   },
 
   resetChosen: function (chosenMoment) {
-    var chosenMoment = moment(chosenMoment);
+    var _chosenMoment = moment(chosenMoment);
     var days = this.daysInMonth;
-    var _this = this;
     days.forEach(function (day) {
       day.set('chosen', false);
     });
     
     days.find( function (day) {
-      return day.moment.date() === chosenMoment.date();
+      return day.moment.date() === _chosenMoment.date();
     }).set('chosen', true);
   },
 
@@ -84,7 +83,7 @@ export default Ember.Object.extend({
     var date = moment(day).startOf('month').toDate();
     var month = moment(date).get('month');
     var days = [];
-    while (date.getMonth() == month) { //if that date is in the right month
+    while (date.getMonth() === month) { //if that date is in the right month
       day = Day.create({ date: date, uniqueBy: 'id', sortProperties: 'date' });
       day.set('inMonth', true);
       days.pushObject(day);
@@ -101,7 +100,7 @@ export default Ember.Object.extend({
       var newMom = moment(lastDay).add('days', count);
       var newDay = Day.create({ date: newMom });
       newDay.set('month', 'previous');
-      if (moment(lastDay).add('days', count).get('week') == moment(lastDay).get('week')) {
+      if (moment(lastDay).add('days', count).get('week') === moment(lastDay).get('week')) {
         daysInMonth.pushObject(newDay);
       }
     });
@@ -110,7 +109,7 @@ export default Ember.Object.extend({
       var newMom = moment(firstDay).subtract('days', count);
       var newDay = Day.create({ date: newMom });
       newDay.set('month', 'next');
-      if (moment(newMom).get('week') == moment(firstDay).get('week')) {
+      if (moment(newMom).get('week') === moment(firstDay).get('week')) {
         daysInMonth.push(newDay);
       }
     });

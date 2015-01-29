@@ -54,7 +54,7 @@ export default Ember.Controller.extend({
       this.setProperties({email: null, password: null});
 
       Ember.$.post(ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN + '/authorizations', data).then(function(response) {
-        data
+        var data = data;
         _this.establishApiKey(response.auth_token, data.email);
 
         if (attemptedTransition) {
@@ -89,7 +89,7 @@ export default Ember.Controller.extend({
   },
 
   setupAuthHeader: function(key) {
-    var authToken = 'Token token="' + key.get('authToken') + '",email="' + key.get('email') + '"'
+    var authToken = 'Token token="' + key.get('authToken') + '",email="' + key.get('email') + '"';
     Ember.$.ajaxSetup({
       headers: {
         'Authorization': authToken 

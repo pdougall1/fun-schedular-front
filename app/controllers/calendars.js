@@ -28,9 +28,9 @@ export default Ember.ObjectController.extend(Ember.Evented, {
 		}
 	}.observes('currentMonth'),
 
-	addEvent: function (event) {
+	// addEvent: function (event) {
 		// this.get('content').addEvent(event);
-	},
+	// },
 
 	currentMonthFormatted: function () {
 		return moment(this.get('currentMonth'), 'YYYY-MM')

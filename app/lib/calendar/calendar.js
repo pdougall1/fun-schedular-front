@@ -18,20 +18,18 @@ export default Ember.Object.extend({
   }.observes('newItemsRepo.length'),
 
   setChosen: function () {
-    var chosenMonth, chosen, month;
-    var _this = this
+    var chosenMonth;
     chosenMonth = moment(this.get('chosenMonth')).format('YYYY-MM');
     this.findOrCreate(chosenMonth).resetChosen(this.get('chosen'));
   }.observes('chosen'),
 
-  addItems: function (items) {
-    var self = this;
-    var groups = this.groupItems(items);
-    debugger;
+  // addItems: function (items) {
+    // var self = this;
+    // var groups = this.groupItems(items);
     // for each key in the groups Object
     // find of create the month
     // add the month to self    
-  }, 
+  // }, 
 
 
 
@@ -62,7 +60,7 @@ export default Ember.Object.extend({
        currentMonth = month;
     } else {
       if (!currentDateTime) {
-        currentDateTime = this.get('currentDateTime')
+        currentDateTime = this.get('currentDateTime');
       }
       currentMonth = this.createMonth(dateKey, currentDateTime);
     }

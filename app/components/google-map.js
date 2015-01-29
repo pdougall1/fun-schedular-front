@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   }.property('latitude', 'longitude'),
   
   mapOptions: function () {
-  	return { zoom: 13, center: this.get('latLng')}
+  	return { zoom: 13, center: this.get('latLng') };
   }.property('latitude', 'longitude'),
 
   map: function () {
@@ -17,7 +17,7 @@ export default Ember.Component.extend({
   }.property('latitude', 'longitude'),
 
   marker: function () {
-  	var options = { position: this.get('latLng'), map: this.get('map') }
+  	var options = { position: this.get('latLng'), map: this.get('map') };
   	return new google.maps.Marker(options);
   }.property('latitude', 'longitude'),
 

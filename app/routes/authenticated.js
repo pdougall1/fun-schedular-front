@@ -13,7 +13,7 @@ export default Ember.Route.extend({
   },
   actions: {
     error: function(reason, transition) {
-      if (reason.status == 401) {
+      if (reason.status === 401) {
         this.redirectToLogin(transition);
       } else {
         console.log(reason);
