@@ -3,8 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "moment": true,
-    "_": true
+    "moment",
+    "_"
   ],
   "browser" : true,
   "boss" : true,
