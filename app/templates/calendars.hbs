@@ -55,6 +55,7 @@
             {{#each day in week}}
               <div class='day large-1 :medium-1 small-1'>
                 {{day.ofMonth}}
+                <div {{action 'newEvent' day}} class='new-event-button'>New</div>
                 <ul>
                   {{#each event in day.content}}
                     <span>{{event-bar event=event action="showEvent"}}</span>

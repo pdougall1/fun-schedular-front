@@ -52,6 +52,11 @@ export default AuthenticatedRoute.extend({
 			this.get('controller.controllers.calendars').addEvent(_event);
 			var params = { currentMonth: moment(_event.get('moment')).format('YYYY-MM') };
 			this.transitionTo('calendars', { queryParams: params } );
+		},
+
+		cancelNewEvent: function () {
+			this.get('controller.model').deleteRecord();
+			this.transitionTo('calendars');
 		}
 	}
 });
