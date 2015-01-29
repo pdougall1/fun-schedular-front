@@ -4,7 +4,9 @@
     "window",
     "-Promise",
     "moment",
-    "_"
+    "_",
+    "google",
+    "$"
   ],
   "browser" : true,
   "boss" : true,
