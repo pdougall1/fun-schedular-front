@@ -28,14 +28,19 @@ export default Ember.Object.extend({
 
   addEventsToDays: function () {
     var events = this.get('allEvents');
+
     var self = this;
     events.forEach( function (event) {
-      var key = event.get('date');
+      var key = self.getKey(event);
       var day = self.get(key);
       day.addItem(event);
       self.set(key, day);
     });
   }.observes('allEvents.length'),
+
+  getKey: function (event) {
+    return moment(event.get('startTime')).format('YYYY-MM-DD');
+  },
 
   allEvents: [],
 
@@ -48,7 +53,7 @@ export default Ember.Object.extend({
 
   addEvent: function (event) {
     var events = this.get('allEvents');
-    events.addObject(event);
+    events.pushObject(event);
     this.set('allEvents', events);
     return this;
   },

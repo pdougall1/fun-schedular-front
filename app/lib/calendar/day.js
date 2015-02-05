@@ -49,10 +49,10 @@ export default Ember.Object.extend({
       prop = item.get(uniqueBy);
       if (!this.itemUniqueByProps.contains(prop)) {
         this.itemUniqueByProps.addObject(prop);
-        return this.addObject(item);
+        return this.get('content').addObject(item);
       }
     } else {
-      return this.addObject(item);
+      return this.get('content').addObject(item);
     }
   },
 
