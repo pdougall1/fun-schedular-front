@@ -3,7 +3,14 @@ import AuthenticatedRoute from './authenticated';
 
 export default AuthenticatedRoute.extend({
 
+	queryParams: {
+		currentMonth: {
+			refreshModel: true
+		}
+	},
+
 	model: function (params) {
+		console.log('LOTS OF GOOD');
 		var events = this.store.find('event', { currentMonth: params.currentMonth });
 		var calendar = Calendar.create()
 		calendar.findOrCreate(params.currentMonth);
