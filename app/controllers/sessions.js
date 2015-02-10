@@ -54,8 +54,7 @@ export default Ember.Controller.extend({
       this.setProperties({email: null, password: null});
 
       Ember.$.post(ENV.APP.FUN_SCHEDULAR_RAILS_DOMAIN + '/authorizations', data).then(function(response) {
-        var data = data;
-        _this.establishApiKey(response.auth_token, data.email);
+        _this.establishApiKey(response.auth_token, response.email);
 
         if (attemptedTransition) {
           attemptedTransition.retry();
