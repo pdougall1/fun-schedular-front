@@ -11,64 +11,52 @@ export default Ember.Object.extend({
     return month;
   },
 
-  newItemsRepo: [],
-
-  watchNewItems: function () {
-    this.addItems(this.get('newItemsRepo.content.content'));
-  }.observes('newItemsRepo.length'),
-
   setChosen: function () {
     var chosenMonth;
     chosenMonth = moment(this.get('chosenMonth')).format('YYYY-MM');
     this.findOrCreate(chosenMonth).resetChosen(this.get('chosen'));
   }.observes('chosen'),
 
-  // addItems: function (items) {
-    // var self = this;
-    // var groups = this.groupItems(items);
-    // for each key in the groups Object
-    // find of create the month
-    // add the month to self    
-  // }, 
+  addItems: function (items) {
+    var groups, month;
+    var _this = this;
 
-
-
-  // addItems: (items) ->
-  //   self = @
-  //   groups = @groupItems(items)
-  //   for key, group of groups
-  //     month = if self[key] then self[key] else self.createMonth(key)
-  //     month.setEvents(group)
-  //     self.set(key, month)
-
-
-
-  addItem: function (item) {
-    var dateKey = moment(item.get('date')).format('YYYY-MM');
-    var month = this.findOrCreate(dateKey);
-    month.addEvent(item);
-    return this.set(dateKey, month);
+    items.then(function (items) {
+      var groups = _this.groupItems(items.get('content'));
+      for (var monthKey in groups) {
+        month = _this.findOrCreate(monthKey);
+        month.setEvents(groups[monthKey]);
+        _this[monthKey] = month
+      }
+    });
   },
 
-  findOrCreate: function (dateKey, currentDateTime) {
-    if (dateKey.constructor.name === 'Moment') {
-      dateKey = dateKey.format('YYYY-MM');
+  addItem: function (item) {
+    var monthKey = moment(item.get('date')).format('YYYY-MM');
+    var month = this.findOrCreate(monthKey);
+    month.addEvent(item);
+    return this.set(monthKey, month);
+  },
+
+  findOrCreate: function (monthKey, currentDateTime) {
+    if (monthKey.constructor.name === 'Moment') {
+      monthKey = monthKey.format('YYYY-MM');
     }
     var currentMonth,
-      month = this.get(dateKey);
+      month = this.get(monthKey);
     if (month) {
        currentMonth = month;
     } else {
       if (!currentDateTime) {
         currentDateTime = this.get('currentDateTime');
       }
-      currentMonth = this.createMonth(dateKey, currentDateTime);
+      currentMonth = this.createMonth(monthKey, currentDateTime);
     }
     return currentMonth;
   },
 
   getMonthKey: function (item) {
-    item.get('date').split("-").slice(0, 2).join("-");
+    return moment(item.get('startTime')).format('YYYY-MM')
   },
 
   groupItems: function (items) {
@@ -77,7 +65,7 @@ export default Ember.Object.extend({
       return self.getMonthKey(item);
     };
 
-    _.groupBy(items, callback);
+    return _.groupBy(items, callback);
   }
 
 });

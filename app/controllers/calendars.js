@@ -6,24 +6,13 @@ export default Ember.ObjectController.extend(Ember.Evented, {
 	currentUser: Ember.computed.alias('controllers.currentUser'),
 	queryParams: ['currentMonth'],
 
-	init: function () {
-		this.set('content', this.get('calendar'));
-	},
-
-	calendar: function () {
-		// memoize calendar
-		var calendar = this.memoCal;
-		if (calendar) {
-			return calendar;
-		} else {
-			this.memoCal = Calendar.create();
-			return this.memoCal;
-		}
-	}.property(),
-
 	currentMonth: function () {
 		return moment().format('YYYY-MM');
 	}.property(),
+
+	currentCallendarMonth: function () {
+		return this.get('content')[this.get('currentMonth')];
+	}.property('currentMonth'),
 
 	updateMonth: function () {
 		if (this.get('calendar')) {

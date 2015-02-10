@@ -1,7 +1,15 @@
-// import Ember from 'ember';
+import Calendar from '../lib/calendar/calendar';
 import AuthenticatedRoute from './authenticated';
 
 export default AuthenticatedRoute.extend({
+
+	model: function (params) {
+		var events = this.store.find('event', { currentMonth: params.currentMonth });
+		var calendar = Calendar.create()
+		calendar.findOrCreate(params.currentMonth);
+		calendar.addItems(events);
+		return calendar
+	},
 
 	actions: {
 		newEvent: function (day) {
