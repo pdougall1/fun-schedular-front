@@ -1,0 +1,69 @@
+<div id='calendar'>
+  <div class='main-calendar'>
+    <div class='clear-row'>
+      <ul class="buttons">
+        <li class="inline-button" {{action 'previousMonth'}}> < </li>
+        <li class="inline-button" {{action 'nextMonth'}}> > </li>
+        <li>{{currentMonthFormatted}}</li>
+      </ul>
+    </div>
+    <h1>{{eventCount}}</h1>
+
+
+    <ul class="calendar">
+
+      <li class='day-header'>
+        <div class="small-1 medium-1 large-1 day">
+          <span>Sun</span>
+        </div>
+        <div class="small-1 medium-1 large-1 day">
+          <span>Mon</span>
+        </div>
+        <div class="small-1 medium-1 large-1 day">
+          <span>Tue</span>
+        </div>
+        <div class="small-1 medium-1 large-1 day">
+          <span>Wed</span>
+        </div>
+        <div class="small-1 medium-1 large-1 day">
+          <span>Thu</span>
+        </div>
+        <div class="small-1 medium-1 large-1 day">
+          <span>Fri</span>
+        </div>
+        <div class="small-1 medium-1 large-1 day">
+          <span>Sat</span>
+        </div>
+      </li>
+
+
+        {{#each week in month}}
+          <li class="week">
+            {{#each day in week}}
+              <div class='day large-1 :medium-1 small-1'>
+                {{day.ofMonth}}
+                {{#if day.inCurrentMonth}}
+                  {{#if hasNewEventButton}}
+                    <div {{action 'newEvent' day}} class='new-event-button'>New</div>
+                  {{/if}}
+                {{/if}}
+                {{#if day.inCurrentMonth}}
+                  <ul class='calendar-events-list'>
+                    {{#each event in day.viewableEvents}}
+                      <li>EVENT : {{event.name}}</li>
+                      {{!-- <span>{{!event-bar event=event action="showEvent"}}</span> --}}
+                    {{/each}}
+                  </ul>
+                {{/if}}
+{{!--                 {{!#if day.today}}
+                  <div>TODAY</div>
+                {{!/if}} --}}
+              </div>
+            {{/each}}
+          </li>
+        {{/each}}
+      </div>
+
+    </ul>
+  </div>
+</div>

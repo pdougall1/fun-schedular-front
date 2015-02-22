@@ -1,33 +1,14 @@
 import Ember from 'ember';
-import Calendar from '../lib/calendar/calendar';
+import CalendarMixin from "ember-calendar-builder/mixins/calendar-mixin";
 
-export default Ember.ObjectController.extend(Ember.Evented, {
+export default Ember.Controller.extend(CalendarMixin, {
 	needs: ['currentUser'],
 	currentUser: Ember.computed.alias('controllers.currentUser'),
 	queryParams: ['currentMonth'],
-
-	currentMonth: function () {
-		return moment().format('YYYY-MM');
-	}.property(),
-
-	currentCallendarMonth: function () {
-		return this.get('content')[this.get('currentMonth')];
-	}.property('currentMonth'),
-
-	updateMonth: function () {
-		if (this.get('calendar')) {
-			var newMonth = this.get('calendar').findOrCreate(this.get('currentMonth'));
-			this.set('content', newMonth);			
-		}
-	}.observes('currentMonth'),
-
-	addEvent: function (event) {
-		this.get('content').addItem(event);
-	},
-
-	currentMonthFormatted: function () {
-		return moment(this.get('currentMonth'), 'YYYY-MM')
-			.format('MMMM YYYY');
+	currentMonth: '2015-01',
+	calendarOptions: { hasNewEventButton: true },
+	calendarDate: function () {
+		return this.get('currentMonth');
 	}.property('currentMonth'),
 
 	actions: {
@@ -37,7 +18,6 @@ export default Ember.ObjectController.extend(Ember.Evented, {
 				.format("YYYY-MM");
 
 			this.transitionToRoute('calendars', {queryParams: {currentMonth: newMonth }});
-			this.trigger('dateChange');
 		},
 
 		nextMonth: function () {
@@ -46,7 +26,10 @@ export default Ember.ObjectController.extend(Ember.Evented, {
 				.format("YYYY-MM");
 
 			this.transitionToRoute('calendars', {queryParams: {currentMonth: newMonth }});
-			this.trigger('dateChange');
+		},
+
+		newEvent: function (day) {
+			debugger
 		}
 	}
 });
