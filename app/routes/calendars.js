@@ -8,11 +8,18 @@ export default AuthenticatedRoute.extend({
 		}
 	},
 
+	model: function (params) {
+		return this.store.find('event', { currentMonth: params.currentMonth });
+	},
+
+	setupController: function (controller, model) {
+		controller.set('calendarEvents', model);
+	},
+
 	actions: {
 		newEvent: function (day) {
-			var formattedDate, params
-			formattedDate = day.get('moment').format('YYYY-MM-DD');
-			params = { eventDate: formattedDate };
+			var params
+			params = { eventDate: day.dateKey };
 			this.transitionTo('create.details', { queryParams: params });
 		},
 

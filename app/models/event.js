@@ -10,7 +10,6 @@ export default DS.Model.extend({
 	createdAt: DS.attr('date'),
 	updatedAt: DS.attr('date'),
 	privacyStatus: DS.attr('string'),
-	users: DS.hasMany('user'),
 	venue: DS.belongsTo('venue')
 
 });

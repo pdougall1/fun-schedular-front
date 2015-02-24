@@ -7,6 +7,7 @@ export default Ember.Controller.extend(CalendarMixin, {
 	queryParams: ['currentMonth'],
 	currentMonth: '2015-01',
 	calendarOptions: { hasNewEventButton: true },
+
 	calendarDate: function () {
 		return this.get('currentMonth');
 	}.property('currentMonth'),
@@ -26,10 +27,6 @@ export default Ember.Controller.extend(CalendarMixin, {
 				.format("YYYY-MM");
 
 			this.transitionToRoute('calendars', {queryParams: {currentMonth: newMonth }});
-		},
-
-		newEvent: function (day) {
-			debugger
 		}
 	}
 });
