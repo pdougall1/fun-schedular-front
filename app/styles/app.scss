@@ -4,10 +4,12 @@
 @import 'overlay';
 @import 'custom';
 @import 'calendar';
+@import 'friend-bar';
 @import 'date-picker';
 @import 'time-picker';
 @import 'events';
 @import 'create-events';
+
 
 html, body {
 	background-color: $primary-background-color;

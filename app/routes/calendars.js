@@ -9,11 +9,15 @@ export default AuthenticatedRoute.extend({
 	},
 
 	model: function (params) {
-		return this.store.find('event', { currentMonth: params.currentMonth });
+		return Em.RSVP.hash({
+      events:  this.store.find('event', { currentMonth: params.currentMonth }),
+      friends: this.store.find('friend', { user_id: 2 })
+    });
 	},
 
 	setupController: function (controller, model) {
-		controller.set('calendarEvents', model);
+		controller.set('calendarEvents', model.events);
+		controller.set('friends', model.friends);
 	},
 
 	actions: {

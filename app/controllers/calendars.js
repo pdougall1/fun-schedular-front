@@ -27,6 +27,21 @@ export default Ember.Controller.extend(CalendarMixin, {
 				.format("YYYY-MM");
 
 			this.transitionToRoute('calendars', {queryParams: {currentMonth: newMonth }});
+		}, 
+
+		mouseoverFriend: function (friend) {
+		},
+
+		mouseoffFriend: function (friend) {
+		},
+
+		highlightFriend: function (friend) {
+			this.set('highlightedFriend', friend);
+		},
+
+		unhighlightFriend: function (friend) {
+			this.set('highlightedFriend', null);
 		}
+
 	}
 });

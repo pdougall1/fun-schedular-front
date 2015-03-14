@@ -1,0 +1,11 @@
+.friend-bar {
+  border-top: 1px solid $secondary-color;
+  height: 30px;
+  padding: 5px;
+  .friend-bar-dot {
+    height: 20px;
+    width: 20px;
+    float: right;
+    border-radius: 10px;
+  }  
+}
